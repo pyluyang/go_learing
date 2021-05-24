@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+package helloworld.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "helloworld/api/helloworld/v1;v1";
+option java_multiple_files = true;
+option java_package = "dev.kratos.api.helloworld.v1";
+option java_outer_classname = "HelloWorldProtoV1";
+
+// The greeting service definition.
+service StudentService {
+  rpc CreateStudent (CreateStudentRequest) returns (CreateStudentReply) {
+    option (google.api.http) = {
+      post: "/v1/student/"
+      body: "*"
+    };
+  }
+  rpc UpdateStudent (UpdateStudentRequest) returns (UpdateStudentReply) {
+    option (google.api.http) = {
+      put: "/v1/student/{id}"
+      body: "*"
+    };
+  }
+  rpc DeleteStudent (DeleteStudentRequest) returns (DeleteStudentReply) {
+    option (google.api.http) = {
+      delete: "/v1/student/{id}"
+    };
+  }
+  rpc GetStudent (GetStudentRequest) returns (GetStudentReply) {
+    option (google.api.http) = {
+      get: "/v1/student/{id}"
+    };
+  }
+  rpc ListStudent (ListStudentRequest) returns (ListStudentReply) {
+    option (google.api.http) = {
+      get: "/v1/students/"
+    };
+  } 
+
+}
+
+// The request message containing the user's name.
+
+
+message Student {
+  int64 id = 1;
+  string name = 2;
+  int64  age = 3;
+}
+
+message CreateStudentRequest{
+  string name = 1;
+  int64  age = 2;
+}
+
+message CreateStudentReply{
+  Student Student =1;
+}
+
+message UpdateStudentRequest{
+  string name = 1;
+  int64  age = 2;
+}
+
+message UpdateStudentReply{
+  Student Student =1;
+}
+
+message DeleteStudentRequest{
+  string name = 1;
+  int64  age = 2;
+}
+
+message DeleteStudentReply{
+}
+
+message GetStudentRequest{
+  int64 id = 1;
+  string name = 2;
+  int64  age = 3;
+}
+
+message GetStudentReply{
+  Student Student =1;
+}
+
+message ListStudentRequest{
+
+}
+
+message ListStudentReply{
+  repeated Student students = 1;
+}

@@ -1,0 +1,6 @@
+# Data
+
+
+```
+go generate ./ent
+```
